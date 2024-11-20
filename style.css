@@ -1,28 +1,45 @@
 /* Header block styles */
 header {
     background-color: #696a82;
-    padding: 20px;
     display: flex;
-    justify-content: space-between; /* Aligns items to the start and end of the header */
-    align-items: center;
-    color: white;
-    height: 50px;
+    align-items: center; /* Centers the content vertically */
+    justify-content: center; /* Centers the header-box horizontally */
+    height: 90px; /* Match height to header-box */
+    margin: 0; /* Reset margins to avoid unexpected spacing */
+    padding: 0; /* Remove padding to eliminate border effect */
+}
+
+.header-box {
+    background-color: #d1cec1; /* Rectangle background color */
+    height: 60%; /* Match the height of the header */
+    width: 100%; /* Full width of the header */
+    display: flex; /* Flexbox for aligning contents inside */
+    align-items: center; /* Center contents vertically */
+    justify-content: space-between; /* Space out items (logo and text) */
+    padding: 0 20px; /* Add horizontal padding for spacing */
+    box-sizing: border-box; /* Ensure padding is included in width calculations */
 }
 
 /* Logo styles */
 .logo {
     width: 100px; /* Adjust the width of your logo */
-    margin-right: 20px; /* Adjust the spacing between the logo and search bar */
+    height: 95px;
 }
 
-/* Search bar styles */
-.search-bar {
-    background-color: #aecafe; /* Set the color of the search bar */
-    padding: 8px;
-    border: none;
-    border-radius: 5px;
-    width: 700px; /* Adjust the width of the search bar */
-    color: black;
+/* Title styles */
+.header-title {
+    flex: 1; /* Occupy remaining space between logo and right edge */
+    text-align: center; /* Center the text horizontally */
+    font-family: 'Artifakt Element', sans-serif;
+    font-weight: bold;
+    font-size: 40px;
+    color: #696a82;
+    text-shadow: 
+        -1.25px -1.25px 0 #000, /* Top-left shadow */
+        1.25px -1.25px 0 #000,  /* Top-right shadow */
+        -1.25px 1.25px 0 #000,  /* Bottom-left shadow */
+        1.25px 1.25px 0 #000,   /* Bottom-right shadow */
+        0px 0px 3px #000; /* Slight blur for smoother edges */
 }
 
 /* Body styles */
@@ -38,25 +55,51 @@ body {
 .sidebar {
     position: absolute;
     top: 110px;
-    width: 250px;
-    height: calc(100vh - 130px); /* Subtract 130px for header and 20px for the bottom gap */
+    width: 290px;
+    height: calc(100vh - 130px); /* Subtract header height and margin */
     background-color: #696a82;
     color: white;
     display: flex;
     flex-direction: column; /* Align items vertically */
-    padding: 10px; /* Add some padding for a better look */
+    padding: 15px; /* Add some padding for a better look */
     overflow-y: auto; /* Enable scrolling if content overflows */
-    box-sizing: border-box; /* Ensure padding does not add to height/width */
-    display: flex; /* Use flexbox for centering */
-    flex-direction: column; /* Align children vertically */
-    justify-content: center; /* Center content vertically */
-    align-items: center; /* Center content horizontally */
+    box-sizing: border-box; /* Include padding in width calculations */
+}
+
+/* Rectangle container */
+.rectangle-container {
+    display: flex; /* Align items horizontally */
+    gap: 20px; /* Space between the .sidebar-rectangle and the stacked rectangles */
+    align-items: flex-start; /* Align items at the top */
+}
+
+/* Sidebar rectangle (already defined) */
+.sidebar-rectangle {
+    background-color: #adcafe; /* Color for the rectangle */
+    width: calc(75% - 20px); /* Full width minus the margin */
+    height: 40px; /* Adjust the height as needed */
+    margin: 10px 0; /* Vertical margin only */
+}
+
+/* Stacked rectangles container */
+.stacked-rectangles {
+    display: flex;
+    flex-direction: column; /* Stack items vertically */
+    gap: 5px; /* Space between each rectangle */
+    padding-top: 10px; /* Add space inside the container at the top */
+}
+
+/* Individual stacked rectangles */
+.stacked-rectangle {
+    background-color: #d1cec1; /* Color for each rectangle */
+    width: 50px; /* Adjust the width as needed */
+    height: 10px; /* Adjust the height as needed */
 }
 
 .toggle-container {
     position: relative;
-    width: 80px;
-    height: 20px;
+    width: 98px;
+    height: 35px;
 }
 
 .toggle-checkbox {
@@ -67,7 +110,7 @@ body {
     display: block;
     width: 100%;
     height: 100%;
-    background-color: #828db0;
+    background-color: #c8dbfd;
     border-radius: 50px;
     cursor: pointer;
     position: relative;
@@ -77,8 +120,8 @@ body {
 .toggle-ball {
     position: absolute;
     top: 50%;
-    width: 32px;
-    height: 32px;
+    width: 35px;
+    height: 35px;
     transform: translateY(-50%);
     transition: transform 0.3s;
     background-size: contain;
@@ -86,25 +129,21 @@ body {
     background-repeat: no-repeat;
 }
 
-.toggle-checkbox:checked + .toggle-label {
-    background-color: #4caf50; /* Change to a highlight color */
-}
-
-.toggle-checkbox:checked + .toggle-label .toggle-ball {
-    transform: translate(52px, -50%);
-}
-
 .toggle-wrapper {
     display: flex;
+    justify-content: space-between; /* Pushes text and toggle to opposite ends */
     align-items: center;
-    gap: 10px;
-    padding: 10px 0; /* Adds spacing between toggles */
+    padding: 20px 0; /* Adjust spacing between toggles */
+    width: 100%; /* Ensures the wrapper takes full width */
 }
-
 .toggle-text {
-    font-size: 16px;
-    color: white;
-    
+    color: #adcafe;
+    font-family: 'Artifakt Element', sans-serif;
+    font-weight: bold;
+    font-size: 20;
+    flex: 1; /* Allows the text to occupy the available space */
+    text-align: right; /* Aligns text to the left side */
+    margin-right: 15px; /* Adds space between the text and the toggle */
 }
 
 /* Specific styles for each switch */
@@ -136,8 +175,8 @@ body {
 .blankblu img, .blankyel img {
     position: absolute;
     top: 50%;
-    width: 32px;
-    height: 32px;
+    width: 35px;
+    height: 35px;
     transform: translateY(-50%);
     transition: opacity 0.3s;
 }
@@ -167,27 +206,15 @@ body {
 }
 
 .toggle-checkbox:checked + .toggle-label .toggle-ball {
-    transform: translate(52px, -50%);
-}
-
-.toggle-wrapper {
-    display: flex;
-    align-items: center;
-    gap: 10px;
-    padding: 10px 0; /* Adds spacing between toggles */
-}
-
-.toggle-text {
-    font-size: 16px;
-    color: white;
+    transform: translate(66px, -50%);
 }
 
 .map-background {
     position: absolute;
     border-radius: 0px 30px 30px 0px;
     top: 110px; /* Position it below the header */
-    left: 250px; /* Position it next to the sidebar */
-    width: calc(100% - 270px); /* Adjust width to fit within viewport, 250px sidebar + 20px margin */
+    left: 290px; /* Position it next to the sidebar */
+    width: calc(100% - 315px); /* Adjust width to fit within viewport, 250px sidebar + 20px margin */
     height: calc(100vh - 130px); /* Adjust height to fit within viewport, 110px header + 20px bottom margin */
     background-color: #696a82;
 }
