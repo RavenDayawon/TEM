@@ -1,0 +1,214 @@
+/* Header block styles */
+header {
+    background-color: #696a82;
+    padding: 20px;
+    display: flex;
+    justify-content: space-between; /* Aligns items to the start and end of the header */
+    align-items: center;
+    color: white;
+    height: 50px;
+}
+
+/* Logo styles */
+.logo {
+    width: 100px; /* Adjust the width of your logo */
+    margin-right: 20px; /* Adjust the spacing between the logo and search bar */
+}
+
+/* Search bar styles */
+.search-bar {
+    background-color: #aecafe; /* Set the color of the search bar */
+    padding: 8px;
+    border: none;
+    border-radius: 5px;
+    width: 700px; /* Adjust the width of the search bar */
+    color: black;
+}
+
+/* Body styles */
+body {
+    background-color: #e1b496;
+    margin: 0;
+    font-family: Arial, sans-serif;
+    display: flex;
+    flex-direction: column;
+    height: 100vh;
+}
+
+.sidebar {
+    position: absolute;
+    top: 110px;
+    width: 250px;
+    height: calc(100vh - 130px); /* Subtract 130px for header and 20px for the bottom gap */
+    background-color: #696a82;
+    color: white;
+    display: flex;
+    flex-direction: column; /* Align items vertically */
+    padding: 10px; /* Add some padding for a better look */
+    overflow-y: auto; /* Enable scrolling if content overflows */
+    box-sizing: border-box; /* Ensure padding does not add to height/width */
+    display: flex; /* Use flexbox for centering */
+    flex-direction: column; /* Align children vertically */
+    justify-content: center; /* Center content vertically */
+    align-items: center; /* Center content horizontally */
+}
+
+.toggle-container {
+    position: relative;
+    width: 80px;
+    height: 20px;
+}
+
+.toggle-checkbox {
+    display: none;
+}
+
+.toggle-label {
+    display: block;
+    width: 100%;
+    height: 100%;
+    background-color: #828db0;
+    border-radius: 50px;
+    cursor: pointer;
+    position: relative;
+    transition: background-color 0.3s;
+}
+
+.toggle-ball {
+    position: absolute;
+    top: 50%;
+    width: 32px;
+    height: 32px;
+    transform: translateY(-50%);
+    transition: transform 0.3s;
+    background-size: contain;
+    background-position: center;
+    background-repeat: no-repeat;
+}
+
+.toggle-checkbox:checked + .toggle-label {
+    background-color: #4caf50; /* Change to a highlight color */
+}
+
+.toggle-checkbox:checked + .toggle-label .toggle-ball {
+    transform: translate(52px, -50%);
+}
+
+.toggle-wrapper {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 10px 0; /* Adds spacing between toggles */
+}
+
+.toggle-text {
+    font-size: 16px;
+    color: white;
+    
+}
+
+/* Specific styles for each switch */
+.toggle-container.switch1 .toggle-ball {
+    background-image: url('icon/resblu.png'); /* Icon for switch 1 */
+}
+.toggle-container.switch2 .toggle-ball {
+    background-image: url('icon/schoblu.png'); /* Icon for switch 2 */
+}
+.toggle-container.switch3 .toggle-ball {
+    background-image: url('icon/hosblu.png'); /* Icon for switch 3 */
+}
+.toggle-container.switch4 .toggle-ball {
+    background-image: url('icon/marblu.png'); /* Icon for switch 2 */
+}
+.toggle-container.switch5 .toggle-ball {
+    background-image: url('icon/storblu.png'); /* Icon for switch 3 */
+}
+.toggle-container.switch6 .toggle-ball {
+    background-image: url('icon/fireblu.png'); /* Icon for switch 2 */
+}
+.toggle-container.switch7 .toggle-ball {
+    background-image: url('icon/polblu.png'); /* Icon for switch 3 */
+}
+.toggle-container.switch8 .toggle-ball {
+    background-image: url('icon/vetblu.png'); /* Icon for switch 2 */
+}
+
+.blankblu img, .blankyel img {
+    position: absolute;
+    top: 50%;
+    width: 32px;
+    height: 32px;
+    transform: translateY(-50%);
+    transition: opacity 0.3s;
+}
+
+.blankblu img {
+    left: 0; /* Aligns to the left edge of the container */
+    opacity: 0; /* Initially hidden */
+    z-index: 0;
+}
+
+.blankyel img {
+    right: 0; /* Aligns to the right edge of the container */
+    opacity: 1; /* Initially visible */
+    z-index: 0;
+}
+
+.toggle-checkbox:checked ~ .blankblu img {
+    opacity: 1; /* Show when checked */
+}
+
+.toggle-checkbox:checked ~ .blankyel img {
+    opacity: 0; /* Hide when checked */
+}
+
+.toggle-checkbox:checked + .toggle-label {
+    background-color: #4caf50; /* Change to a highlight color */
+}
+
+.toggle-checkbox:checked + .toggle-label .toggle-ball {
+    transform: translate(52px, -50%);
+}
+
+.toggle-wrapper {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 10px 0; /* Adds spacing between toggles */
+}
+
+.toggle-text {
+    font-size: 16px;
+    color: white;
+}
+
+.map-background {
+    position: absolute;
+    border-radius: 0px 30px 30px 0px;
+    top: 110px; /* Position it below the header */
+    left: 250px; /* Position it next to the sidebar */
+    width: calc(100% - 270px); /* Adjust width to fit within viewport, 250px sidebar + 20px margin */
+    height: calc(100vh - 130px); /* Adjust height to fit within viewport, 110px header + 20px bottom margin */
+    background-color: #696a82;
+}
+
+.map-container {
+    position: absolute;
+    border-radius: 0px 10px 10px 0px;
+    top: 20px; /* 20px margin from the top */
+    right: 20px; /* 20px margin from the right */
+    bottom: 20px; /* 20px margin from the bottom */
+    left: 0;
+    overflow: hidden;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+#map {
+    width: 98.5%;
+    height: 94%;
+    border-radius: 0px 10px 10px 0px;
+}
+
+

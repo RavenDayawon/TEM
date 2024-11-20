@@ -1,0 +1,153 @@
+<html> 
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Capstone Map Thing</title>
+        <link rel="stylesheet" href="style.css">
+        <link rel="stylesheet" href="https://unpkg.com/leaflet/dist/leaflet.css" />
+        <script src="https://unpkg.com/leaflet/dist/leaflet.js"></script>    
+    </head>
+        
+    <body>
+        <header>
+            <!-- Logo -->
+            <img src="logo.png" alt="logo" class="logo">
+            
+            <!-- Clickable name -->
+            <div id="user-name">Raven Stillwater</div>
+        </header>   
+
+        <!-- Sidebar -->
+        <div class="sidebar" id="sidebar">
+            <!-- Toggle Switches -->
+            <div class="toggle-wrapper">
+                <span class="toggle-text">Diner</span>
+                <div class="toggle-container switch1">
+                    <input type="checkbox" id="toggle1" class="toggle-checkbox">
+                    <label for="toggle1" class="toggle-label">
+                        <span class="toggle-ball"></span>
+                    </label>
+                    <div class="blankblu">
+                        <img src="icon/blankblu.png" alt="Blank Blue">
+                    </div>
+                    <div class="blankyel">
+                        <img src="icon/blankyel.png" alt="Blank Grey">
+                    </div>
+                </div>
+            </div>
+            <div class="toggle-wrapper">
+                <span class="toggle-text">School</span>
+                <div class="toggle-container switch2">
+                    <input type="checkbox" id="toggle2" class="toggle-checkbox">
+                    <label for="toggle2" class="toggle-label">
+                        <span class="toggle-ball"></span>
+                    </label>
+                    <div class="blankblu">
+                        <img src="icon/blankblu.png" alt="Blank Blue">
+                    </div>
+                    <div class="blankyel">
+                        <img src="icon/blankyel.png" alt="Blank Grey">
+                    </div>
+                </div>
+            </div>
+            <div class="toggle-wrapper">
+                <span class="toggle-text">Hospital</span>
+                <div class="toggle-container switch3">
+                    <input type="checkbox" id="toggle3" class="toggle-checkbox">
+                    <label for="toggle3" class="toggle-label">
+                        <span class="toggle-ball"></span>
+                    </label>
+                    <div class="blankblu">
+                        <img src="icon/blankblu.png" alt="Blank Blue">
+                    </div>
+                    <div class="blankyel">
+                        <img src="icon/blankyel.png" alt="Blank Grey">
+                    </div>
+                </div>
+            </div>
+            <div class="toggle-wrapper">
+                <span class="toggle-text">Supermarket</span>
+                <div class="toggle-container switch4">
+                    <input type="checkbox" id="toggle4" class="toggle-checkbox">
+                    <label for="toggle4" class="toggle-label">
+                        <span class="toggle-ball"></span>
+                    </label>
+                    <div class="blankblu">
+                        <img src="icon/blankblu.png" alt="Blank Blue">
+                    </div>
+                    <div class="blankyel">
+                        <img src="icon/blankyel.png" alt="Blank Grey">
+                    </div>
+                </div>
+            </div>
+            <div class="toggle-wrapper">
+                <span class="toggle-text">Store</span>
+                <div class="toggle-container switch5">
+                    <input type="checkbox" id="toggle5" class="toggle-checkbox">
+                    <label for="toggle5" class="toggle-label">
+                        <span class="toggle-ball"></span>
+                    </label>
+                    <div class="blankblu">
+                        <img src="icon/blankblu.png" alt="Blank Blue">
+                    </div>
+                    <div class="blankyel">
+                        <img src="icon/blankyel.png" alt="Blank Grey">
+                    </div>
+                </div>
+            </div>
+            <div class="toggle-wrapper">
+                <span class="toggle-text">Fire Station</span>
+                <div class="toggle-container switch6">
+                    <input type="checkbox" id="toggle6" class="toggle-checkbox">
+                    <label for="toggle6" class="toggle-label">
+                        <span class="toggle-ball"></span>
+                    </label>
+                    <div class="blankblu">
+                        <img src="icon/blankblu.png" alt="Blank Blue">
+                    </div>
+                    <div class="blankyel">
+                        <img src="icon/blankyel.png" alt="Blank Grey">
+                    </div>
+                </div>
+            </div>
+            <div class="toggle-wrapper">
+                <span class="toggle-text">Police Station</span>
+                <div class="toggle-container switch7">
+                    <input type="checkbox" id="toggle7" class="toggle-checkbox">
+                    <label for="toggle7" class="toggle-label">
+                        <span class="toggle-ball"></span>
+                    </label>
+                    <div class="blankblu">
+                        <img src="icon/blankblu.png" alt="Blank Blue">
+                    </div>
+                    <div class="blankyel">
+                        <img src="icon/blankyel.png" alt="Blank Grey">
+                    </div>
+                </div>
+            </div>
+            <div class="toggle-wrapper">
+                <span class="toggle-text">Vet</span>
+                <div class="toggle-container switch8">
+                    <input type="checkbox" id="toggle8" class="toggle-checkbox">
+                    <label for="toggle8" class="toggle-label">
+                        <span class="toggle-ball"></span>
+                    </label>
+                    <div class="blankblu">
+                        <img src="icon/blankblu.png" alt="Blank Blue">
+                    </div>
+                    <div class="blankyel">
+                        <img src="icon/blankyel.png" alt="Blank Grey">
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="map-background">
+            <div class="map-container" id="map">
+                <!-- Map will be rendered here -->
+            </div>
+        </div>  
+
+        <script src="script.js"></script>
+    </body>
+</html>
