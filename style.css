@@ -20,10 +20,35 @@ header {
     box-sizing: border-box; /* Ensure padding is included in width calculations */
 }
 
+.header-title {
+    display: inline-block; /* Ensure the background only wraps the text itself */
+    font-family: 'Artifakt Element', sans-serif;
+    font-weight: bold;
+    font-size: 40px;
+    color: #696a82;
+    text-shadow: 
+        -1.25px -1.25px 0 #000,
+        1.25px -1.25px 0 #000,
+        -1.25px 1.25px 0 #000,
+        1.25px 1.25px 0 #000,
+        0px 0px 3px #000; /* Slight blur for smoother edges */
+}
+
+/* Circle container for the logo */
+.logo-circle {
+    width: 90px; /* Width of the circle */
+    height: 90px; /* Height of the circle (same as width for a perfect circle) */
+    background-color: #696a82; /* Circle background color */
+    border-radius: 50%; /* Makes it a circle */
+    display: flex; /* Flexbox to center the logo inside the circle */
+    justify-content: center; /* Center the logo horizontally */
+    align-items: center; /* Center the logo vertically */
+}
+
 /* Logo styles */
 .logo {
-    width: 100px; /* Adjust the width of your logo */
-    height: 95px;
+    width: 80%; /* Adjust the size of the logo relative to the circle */
+    height: 80%; /* Maintain aspect ratio */
 }
 
 /* Title styles */
@@ -53,17 +78,17 @@ body {
 }
 
 .sidebar {
-    position: absolute;
-    top: 110px;
+    display: flex;
+    flex-direction: column; /* Stack content vertically */
+    position: relative; /* Ensure elements are positioned relative to this container */
+    top: 20px;
     width: 290px;
-    height: calc(100vh - 130px); /* Subtract header height and margin */
+    height: calc(100vh - 130px); /* Adjust for the header and margins */
     background-color: #696a82;
     color: white;
-    display: flex;
-    flex-direction: column; /* Align items vertically */
-    padding: 15px; /* Add some padding for a better look */
-    overflow-y: auto; /* Enable scrolling if content overflows */
-    box-sizing: border-box; /* Include padding in width calculations */
+    padding: 15px; /* Padding for spacing inside the sidebar */
+    box-sizing: border-box; /* Include padding in height and width calculations */
+    overflow-y: auto; /* Enable scrolling if needed */
 }
 
 /* Rectangle container */
@@ -94,6 +119,38 @@ body {
     background-color: #d1cec1; /* Color for each rectangle */
     width: 50px; /* Adjust the width as needed */
     height: 10px; /* Adjust the height as needed */
+}
+
+.bottom-squares {
+    display: flex; /* Arrange squares horizontally */
+    justify-content: space-between; /* Even spacing between squares */
+    align-items: center; /* Align squares vertically */
+    margin-top: auto; /* Push the squares to the bottom */
+    padding-top: 10px; /* Add spacing above the squares */
+    gap: 10px; /* Add gap between the squares */
+    padding-bottom: 14px;
+}
+
+.square.square.large-1, .square.small-1 {
+    background-color: #adcafe; /* Adjust as needed */
+    height: 40px;
+}
+
+.square.square.large-2, .square.small-2 {
+    background-color: #d1cec1; /* Adjust as needed */
+    height: 40px;
+}
+
+.square.large-1 {
+    width: 80px; /* Width for the first and last squares */
+}
+
+.square.large-2 {
+    width: 140px; 
+}
+
+.square.small-1, .square.small-2 {
+    width: 10px; /* Width for the middle squares */
 }
 
 .toggle-container {
@@ -237,5 +294,3 @@ body {
     height: 94%;
     border-radius: 0px 10px 10px 0px;
 }
-
-
