@@ -27,39 +27,71 @@ document.addEventListener("DOMContentLoaded", function() {
     // Initially hide the sidebar
     sidebar.classList.remove("visible");
 
-    toggleButton.addEventListener("click", function () {
+    toggleButton.addEventListener("click", function() {
         if (window.innerWidth <= 600) {
             sidebar.classList.toggle("visible");
-            logoCircle.classList.toggle("scaled"); // Always toggle 'scaled' on logo click
+            logoMenu.classList.toggle("scaled");
+            // Always toggle 'scaled' on logo click
         }
     });
 
-    const logoCircle = document.getElementById("toggleSidebar");
+    const logoMenu = document.getElementById("toggleSidebar");
 
-    if (!logoCircle) {
+    if (!logoMenu) {
         console.error("Logo element not found!"); // Log an error if the logo is not found
     }
 
     // Function to close the sidebar
     function closeSidebar() {
         sidebar.classList.remove("visible");
-        if (logoCircle.classList.contains("scaled")) {
-            logoCircle.classList.remove("scaled");
+        if (logoMenu.classList.contains("scaled")) {
+            logoMenu.classList.remove("scaled");
         }
     }
 
     // Close the sidebar when clicking anywhere outside of it
     document.addEventListener("click", function (event) {
         const isClickInsideSidebar = sidebar.contains(event.target);
-        const isClickOnLogo = toggleButton.contains(event.target);
+        const isClickOnMenu = toggleButton.contains(event.target);
 
         // Close the sidebar and toggle the scaled class only if the sidebar is visible
-        if (!isClickInsideSidebar && !isClickOnLogo && sidebar.classList.contains("visible")) {
+        if (!isClickInsideSidebar && !isClickOnMenu && sidebar.classList.contains("visible")) {
             closeSidebar();
         }
     });
 
 
+    // Help Tab toggle logic
+    const helpButton = document.getElementById("toggleHelp");
+    const helpTab = document.getElementById("helpTab");
+    const logoHelp = document.getElementById("toggleHelp");
+
+    helpTab.classList.remove("visible");
+
+    helpButton.addEventListener("click", function() {
+        if (window.innerWidth <= 600) {
+            helpTab.classList.toggle("visible");
+            logoHelp.classList.toggle("scaled"); // Apply scale effect only to the help tab
+        }
+    });
+
+    // Function to close the help tab
+    function closeHelp() {
+        helpTab.classList.remove("visible");
+        if (logoHelp.classList.contains("scaled")) {
+            logoHelp.classList.remove("scaled");
+        }
+    }
+
+    // Close the help tab when clicking anywhere outside of it
+    document.addEventListener("click", function (event) {
+        const isClickInsideHelpTab = helpTab.contains(event.target);
+        const isClickOnHelp = helpButton.contains(event.target);
+
+        if (!isClickInsideHelpTab && !isClickOnHelp && helpTab.classList.contains("visible")) {
+            closeHelp();
+        }
+    });
 
     // POI Categories // Add new locations here
     const categories = {
@@ -706,45 +738,48 @@ document.addEventListener("DOMContentLoaded", function() {
 
     
 
-// GPS
-function updateLocation(position) {
-    var lat = position.coords.latitude;
-    var lng = position.coords.longitude;
+    // GPS
+    function updateLocation(position) {
+        var lat = position.coords.latitude;
+        var lng = position.coords.longitude;
 
-    // Add or update a marker at the user's location
-    if (userMarker) {
-        userMarker.setLatLng([lat, lng]);
+        // Add or update a marker at the user's location
+        if (userMarker) {
+            userMarker.setLatLng([lat, lng]);
+        } else {
+            userMarker = L.marker([lat, lng]).addTo(map).bindPopup("You are here");
+        }
+
+        // Center the map only on the first GPS update
+        if (shouldCenter) {
+            map.setView([lat, lng], 13);
+            // Adjust zoom level as needed
+            shouldCenter = false;
+            // Prevent further centering
+        }
+    }
+
+    // Handle geolocation errors
+    function handleLocationError(error) {
+        console.log("Error with geolocation: ", error);
+        alert("Unable to retrieve location. Please enable GPS and refresh the page.");
+    }
+
+    // Add a marker to show the user's location (initialize as null)
+    var userMarker = null;
+
+    // Flag to center map only once
+    var shouldCenter = true;
+
+    // Request the user’s location continuously
+    if (navigator.geolocation) {
+        navigator.geolocation.watchPosition(updateLocation, handleLocationError, {
+            enableHighAccuracy: true,
+            maximumAge: 5000,
+            // Cache the position for 5 seconds
+            timeout: 5000 // Timeout if position not available after 5 seconds
+        });
     } else {
-        userMarker = L.marker([lat, lng]).addTo(map).bindPopup("You are here");
+        alert("Geolocation is not supported by this browser.");
     }
-
-    // Center the map only on the first GPS update
-    if (shouldCenter) {
-        map.setView([lat, lng], 13); // Adjust zoom level as needed
-        shouldCenter = false; // Prevent further centering
-    }
-}
-
-// Handle geolocation errors
-function handleLocationError(error) {
-    console.log("Error with geolocation: ", error);
-    alert("Unable to retrieve location. Please enable GPS and refresh the page.");
-}
-
-// Add a marker to show the user's location (initialize as null)
-var userMarker = null;
-
-// Flag to center map only once
-var shouldCenter = true;
-
-// Request the user’s location continuously
-if (navigator.geolocation) {
-    navigator.geolocation.watchPosition(updateLocation, handleLocationError, {
-        enableHighAccuracy: true,
-        maximumAge: 5000, // Cache the position for 5 seconds
-        timeout: 5000     // Timeout if position not available after 5 seconds
-    });
-} else {
-    alert("Geolocation is not supported by this browser.");
-}
 });
