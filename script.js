@@ -16,19 +16,49 @@ document.addEventListener("DOMContentLoaded", function() {
         bounceAtZoomLimits: false // Prevents snapping back when hitting the boundary
     });
 
-    const toggleButton = document.getElementById("toggleSidebar");
-    const sidebar = document.getElementById("sidebar");
-
-    // Toggle sidebar visibility
-    toggleButton.addEventListener("click", function () {
-        if (window.innerWidth <= 768) {
-            sidebar.classList.toggle("hidden");
-        }
-    });
-
     L.tileLayer('https://api.maptiler.com/maps/basic/{z}/{x}/{y}.png?key=xZL9GQgnbzaUJBDNErxW', {
         attribution: '&copy; <a href="https://www.maptiler.com/copyright/">MapTiler</a>',
     }).addTo(map);
+
+    // Sidebar toggle logic
+    const toggleButton = document.getElementById("toggleSidebar");
+    const sidebar = document.getElementById("sidebar");
+
+    // Initially hide the sidebar
+    sidebar.classList.remove("visible");
+
+    toggleButton.addEventListener("click", function () {
+        if (window.innerWidth <= 600) {
+            sidebar.classList.toggle("visible");
+            logoCircle.classList.toggle("scaled"); // Always toggle 'scaled' on logo click
+        }
+    });
+
+    const logoCircle = document.getElementById("toggleSidebar");
+
+    if (!logoCircle) {
+        console.error("Logo element not found!"); // Log an error if the logo is not found
+    }
+
+    // Function to close the sidebar
+    function closeSidebar() {
+        sidebar.classList.remove("visible");
+        if (logoCircle.classList.contains("scaled")) {
+            logoCircle.classList.remove("scaled");
+        }
+    }
+
+    // Close the sidebar when clicking anywhere outside of it
+    document.addEventListener("click", function (event) {
+        const isClickInsideSidebar = sidebar.contains(event.target);
+        const isClickOnLogo = toggleButton.contains(event.target);
+
+        // Close the sidebar and toggle the scaled class only if the sidebar is visible
+        if (!isClickInsideSidebar && !isClickOnLogo && sidebar.classList.contains("visible")) {
+            closeSidebar();
+        }
+    });
+
 
 
     // POI Categories // Add new locations here
@@ -639,19 +669,9 @@ document.addEventListener("DOMContentLoaded", function() {
     const categoryMarkers = {};
 
     const addMarkers = (data, iconUrl) => {
-        return data.map(({ name, coords, link }) => {
+        return data.map(({ name, coords }) => {
             const marker = L.marker(coords, { icon: L.icon({ iconUrl, iconSize: [38, 38] }) });
-    
-            // Create a clickable name as the popup content
-            const popupContent = `
-                <a href="${link}" target="_blank" rel="noopener noreferrer" style="text-decoration: none; color: blue; font-weight: bold;">
-                    ${name}
-                </a>
-            `;
-    
-            // Add the popup to the marker
-            marker.addTo(map).bindPopup(popupContent);
-    
+            marker.addTo(map).bindPopup(name);
             return marker;
         });
     };
