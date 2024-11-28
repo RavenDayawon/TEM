@@ -698,4 +698,49 @@ document.addEventListener("DOMContentLoaded", function() {
             }
         });
     });
+
+    // GPS
+    function updateLocation(position) {
+        var lat = position.coords.latitude;
+        var lng = position.coords.longitude;
+
+        // Add or update a marker at the user's location
+        if (userMarker) {
+            userMarker.setLatLng([lat, lng]);
+        } else {
+            userMarker = L.marker([lat, lng]).addTo(map).bindPopup("You are here");
+        }
+
+        // Center the map only on the first GPS update
+        if (shouldCenter) {
+            map.setView([lat, lng], 13);
+            // Adjust zoom level as needed
+            shouldCenter = false;
+            // Prevent further centering
+        }
+    }
+
+    // Handle geolocation errors
+    function handleLocationError(error) {
+        console.log("Error with geolocation: ", error);
+        alert("Unable to retrieve location. Please enable GPS and refresh the page.");
+    }
+
+    // Add a marker to show the user's location (initialize as null)
+    var userMarker = null;
+
+    // Flag to center map only once
+    var shouldCenter = true;
+
+    // Request the user’s location continuously
+    if (navigator.geolocation) {
+        navigator.geolocation.watchPosition(updateLocation, handleLocationError, {
+            enableHighAccuracy: true,
+            maximumAge: 5000,
+            // Cache the position for 5 seconds
+            timeout: 5000 // Timeout if position not available after 5 seconds
+        });
+    } else {
+        alert("Geolocation is not supported by this browser.");
+    }
 });
