@@ -558,6 +558,7 @@ body {
     .list-loc ul {
         padding-left: 15px; /* Indent for sub-items */
         margin-top: 0; /* Remove space above nested list */
+        text-align: justify;
     }
     
     .list-loc ul li {
