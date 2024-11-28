@@ -59,6 +59,7 @@ document.addEventListener("DOMContentLoaded", function() {
     // POI Categories // Add new locations here
     const categories = {
         restaurants: [
+            { name: "D'Cuisines", coords: [14.500526970225751, 121.29496952744444] },
             { name: "Kainan Sa Tabing Lawa Restaurant", coords: [14.496368382643709, 121.27803192847686] },
             { name: "Tanayan Restaurant", coords: [14.502766847121284, 121.286228759249] },
             { name: "Rambulls Bakahan sa Tanay", coords: [14.502933038536995, 121.29223690712573] },
