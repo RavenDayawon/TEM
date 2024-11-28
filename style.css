@@ -553,12 +553,12 @@ body {
     
     .list-loc li {
         margin: 2px 10px; /* Add spacing between list items */
+        text-align: justify;
     }
 
     .list-loc ul {
         padding-left: 15px; /* Indent for sub-items */
         margin-top: 0; /* Remove space above nested list */
-        text-align: justify;
     }
     
     .list-loc ul li {
