@@ -469,7 +469,7 @@ body {
     /* HelpTab styles */
     .helpTab {
         position: fixed;
-        top: 8%;
+        top: 70px;
         left: 5%; /* Center horizontally */
         width: 90%; /* Sidebar width */
         height: calc(100vh - 160px); /* Adjust height */
@@ -488,16 +488,21 @@ body {
 
     /* Help content styling */
     .help-content h2 {
-        color: #adcafe;
-        margin-top: 20px;
+        background-color: #adcafe;
+        color: black;
+        margin: 25px 15px 0px 15px;
+        padding: 5px;
         text-align: center;
     }
 
     .help-content p {
         font-size: 1rem;
         color: #ffffff;
+        padding: 15px;
         margin: 15px;
         text-align: justify;
+        background-color: #e1b496;
+        color: black;
     }
 
     /* Help button styles */
