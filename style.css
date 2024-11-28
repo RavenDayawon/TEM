@@ -22,16 +22,11 @@ header {
 .title-container {
     width: 100%;
     height: calc(90px - 20px); /* Subtract top and bottom margins */
-    margin: 20px 0;
     background-color: #d1cec1;
     display: flex;
     align-items: center; /* Center content vertically */
     justify-content: center; /* Center title horizontally */
     position: relative;
-}
-
-footer {
-    display: none; /* Footer is hidden */
 }
 
 /* Logo circle styles */
@@ -73,6 +68,127 @@ footer {
     white-space: nowrap; /* Prevent text wrapping */
 }
 
+.help-button1 {
+    position: absolute; /* Use absolute positioning */
+    top: 50%; /* Center vertically within the parent container */
+    right: 40px; /* Set a 40px margin from the right edge */
+    transform: translateY(-50%); /* Adjust for vertical centering */
+    width: 40px;
+    height: 40px;
+    background-color: #adcafe;
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: white;
+    font-size: 1.5rem;
+    font-weight: bold;
+    cursor: pointer;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    transition: background-color 0.3s, transform 0.2s;
+    border: 2px solid #696a82;
+}
+
+.help-button1.scaled {
+    transform: translateY(-50%) scale(1.1); /* Maintain vertical centering while scaling */
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.3), /* Stronger shadow */
+                0 8px 24px rgba(0, 0, 0, 0.25); /* Wider shadow */
+} 
+
+/* HelpTab1 styles */
+.helpTab1 {
+    position: fixed;
+    top: 70px;
+    left: 30%; /* Center horizontally */
+    width: 40%; /* Sidebar width */
+    height: calc(100vh - 160px); /* Adjust height */
+    background-color: #696a82; /* Background color */
+    border-radius: 10px; /* Rounded corners */
+    box-shadow: 0 10px 8px rgba(0, 0, 0, 0.2); /* Optional shadow */
+    transform: translateY(150%); /* Start fully hidden */
+    transition: transform 0.3s ease-in-out; /* Smooth transition */
+    z-index: 999; /* Ensure it stays above other elements */
+    overflow-y: auto;
+}
+
+/* Sidebar visible state */
+.helptab1.visible {
+    transform: translateY(0); /* Slide into view */
+}
+
+/* Help content styling */
+.help-content1 h2 {
+    background-color: #adcafe;
+    color: black;
+    margin: 25px 15px 0px 15px;
+    padding: 5px;
+    text-align: center;
+}
+
+.help-content1 p {
+    font-size: 1rem;
+    color: #ffffff;
+    padding: 15px;
+    margin: 15px;
+    text-align: justify;
+    background-color: #d1cec1;
+    color: black;
+}
+
+.list-loc1 {
+    font-size: 1rem;
+    color: black;
+    background-color: #d1cec1;
+    list-style-type: square; /* Change bullet points to squares */
+    margin: 15px;
+    padding: 15px 15px 15px 30px;
+}
+
+.list-loc1 li {
+    margin: 2px 10px; /* Add spacing between list items */
+    text-align: justify;
+}
+
+.list-loc1 ul {
+    padding-left: 15px; /* Indent for sub-items */
+    margin-top: 0; /* Remove space above nested list */
+}
+
+.list-loc1 ul li {
+    list-style-type: circle; /* Change sublist bullet points to circles */
+}
+
+.list-loc2 {
+    font-size: 1rem;
+    color: black;
+    background-color: #d1cec1;
+    list-style-type: square; /* Change bullet points to squares */
+    margin: 15px;
+    padding: 15px 15px 15px 30px;
+    display: flex; /* Use flexbox for layout */
+    flex-wrap: wrap; /* Allow items to wrap to the next column */
+    gap: 20px; /* Add space between columns */
+    list-style-type: none; /* Remove bullet points */
+}
+
+.list-loc2 li {
+    margin: 2px 30px; /* Add spacing between list items */
+    text-align: justify;
+}
+
+.list-loc2 ul {
+    padding-left: 15px; /* Indent for sub-items */
+    margin-top: 0; /* Remove space above nested list */
+}
+
+.list-loc2 ul li {
+    list-style-type: circle; /* Change sublist bullet points to circles */
+}
+
+.list-loc, .help-content, .help-content.p {
+    display: none;
+}
+
 /* Styling the toggle list */
 .toggle-list {
     list-style: none; /* Remove default list styling */
@@ -107,7 +223,7 @@ body {
     flex-direction: column; /* Stacks children vertically */
     justify-content: space-between; /* Pushes elements to the top and bottom */
     position: relative; /* Keeps elements within the bounds of the sidebar */
-    width: 15.1%; /* Adjust width as needed */
+    width: 15%; /* Adjust width as needed */
     top: 110px;
     height: calc(100vh - 130px); /* Adjust height as needed */
     background-color: #696a82;
@@ -248,8 +364,8 @@ body {
     position: absolute;
     border-radius: 0px 15px 15px 0px;
     top: 110px; /* Position it below the header */
-    left: 290px; /* Position it next to the sidebar */
-    width: calc(100% - 300px); /* Adjust width to fit within viewport, 250px sidebar + 20px margin */
+    left: 15%;
+    width: calc(100% - 15.5%); /* Adjust width to fit within viewport, 250px sidebar + 20px margin */
     height: calc(100vh - 130px); /* Adjust height to fit within viewport, 110px header + 20px bottom margin */
     background-color: #696a82;
 }
@@ -276,6 +392,11 @@ body {
     z-index: 998; /* Lower than the sidebar */
 }
 
+footer {
+    display: none; /* Footer is hidden */
+}
+
+
 /* Responsive styles for smaller PC monitors */
 @media (max-width: 1200px) {
     .header-title {
@@ -284,11 +405,16 @@ body {
     }
 
     .sidebar {
-        width: 20.1%;
+        width: 25%;
     }
 
     .map-background {
-        left: 213px; /* Position it next to the sidebar */
+        left: 25%; /* Position it next to the sidebar */
+        width: calc(100% - 310px); /* Adjust width to fit within viewport, 250px sidebar + 20px margin */
+    }
+
+    .helpTab1 {
+        width: 50%; /* Sidebar width */
     }
 }
 
@@ -299,92 +425,15 @@ body {
     }
 
     .sidebar {
-        width: 20.1%;
+        width: 30%;
     }
 
     .map-background {
-        left: 162px; /* Position it next to the sidebar */
-    }
-}
-
-  
-/* Responsive styles for mobile devices */
-@media (max-width: 768px) {
-    /* Hide the title on smaller screens */
-    .header-title, .main-header, .header-box {
-        display: none; /* Completely hide the title */
+        left: 30%; /* Position it next to the sidebar */
     }
 
-    /* Center the logo in the header */
-    .logo-circle {
-        position: static; /* Remove absolute positioning */
-        margin: 0 auto; /* Center the logo horizontally */
-    }
-
-    .sidebar {
-        top: 70px;
-        left: 5%;
-        width: 90%;
-        height: calc(100vh - 160px); /* Adjust for the header and margins */
-        z-index: 999; /* Ensure it stays on top */
-        border-radius: 10px 10px 10px 10px;
-        box-shadow: 0 10px 8px rgba(0, 0, 0, 0.2);
-        transform: translateX(0); /* Sidebar starts visible */
-        opacity: 1; /* Fully visible */
-        transition: transform 0.3s ease-in-out, opacity 0.3s ease-in-out;
-    }
-
-    /* Sidebar hidden state */
-    .sidebar.hidden {
-        transform: translateY(100%); /* Slide out to the left */
-        opacity: 0; /* Fade out */
-    }
-
-    footer {
-        display: flex; /* Show footer instead */
-        background-color: #696a82; /* Same as header */
-        height: 70px; /* Match header height */
-        width: 100%;
-        position: fixed;
-        bottom: 0; /* Position footer at the bottom */
-        z-index: 999; /* Ensure it stays on top */
-        align-items: center; /* Center contents vertically */
-        justify-content: center; /* Center contents horizontally */
-    }
-    
-    /* Additional styles for footer content */
-    .main-footer {
-        width: 100%;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-    }
-
-    .title-container {
-        height: 55px;
-    }
-
-    .main-footer .logo-circle img {
-        width: 90%; /* Logo scaling for mobile */
-        height: 90%;
-        object-fit: cover;
-    }
-
-    .main-footer .header-title {
-        font-size: 1.5rem; /* Adjust title size for mobil   e */
-        color: white;
-    }
-
-    .map-background {
-        top: 10px;
-        left: 0px; /* Position it next to the sidebar */
-        height: calc(100vh - 95px); /* Adjust height to fit within viewport, 110px header + 20px bottom margin */
-        width: calc(100% - 5px); /* Adjust width to fit within viewport, 250px sidebar + 20px margin */
-    }
-
-    #map {
-        width: 98.25%;
-        height: 97.5%;
+    .helpTab1 {
+        width: 50%; /* Sidebar width */
     }
 }
 
@@ -466,8 +515,12 @@ body {
         color: white;
     }  
 
+    .helpTab1 {
+        display: none;
+    }
+
     /* HelpTab styles */
-    .helpTab {
+    .helpTab2 {
         position: fixed;
         top: 70px;
         left: 5%; /* Center horizontally */
@@ -483,8 +536,37 @@ body {
     }
 
     /* Sidebar visible state */
-    .helptab.visible {
+    .helptab2.visible {
         transform: translateX(0); /* Slide into view */
+    }
+
+    .help-button2 {
+        position: relative;
+        width: 40px;
+        height: 40px;
+        background-color: #adcafe;
+        border-radius: 50%;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        color: white;
+        font-size: 1.5rem;
+        font-weight: bold;
+        cursor: pointer;
+        margin-left: 40px;
+        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        transition: background-color 0.3s, transform 0.2s;
+        border: 2px solid #696a82;
+    }
+    
+    .help-button2.scaled {
+        transform: scale(1.1); /* Slightly enlarge */
+        box-shadow: 0 6px 12px rgba(0, 0, 0, 0.3), /* Stronger shadow */
+                    0 8px 24px rgba(0, 0, 0, 0.25); /* Wider shadow */
+    } 
+
+    .list-loc, .help-content, .help-content.p {
+        display: block;
     }
 
     /* Help content styling */
@@ -505,42 +587,6 @@ body {
         background-color: #d1cec1;
         color: black;
     }
-
-    .list-how {
-        font-size: 1rem;
-        color: #ffffff;
-        padding: 15px 15px 15px 30px;
-        margin: 15px;
-        text-align: justify;
-        background-color: #d1cec1;
-        color: black;
-    }
-
-    /* Help button styles */
-    .help-button {
-        position: relative;
-        width: 40px;
-        height: 40px;
-        background-color: #adcafe;
-        border-radius: 50%;
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        color: white;
-        font-size: 1.5rem;
-        font-weight: bold;
-        cursor: pointer;
-        margin-left: 40px;
-        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-        transition: background-color 0.3s, transform 0.2s;
-        border: 2px solid #696a82;
-    }
-
-    .help-button.scaled {
-        transform: scale(1.1); /* Slightly enlarge */
-        box-shadow: 0 6px 12px rgba(0, 0, 0, 0.3), /* Stronger shadow */
-                    0 8px 24px rgba(0, 0, 0, 0.25); /* Wider shadow */
-    } 
 
     .list-loc {
         font-size: 1rem;
