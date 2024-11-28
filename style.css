@@ -462,6 +462,7 @@ footer {
     /* Sidebar hidden by default */
     .sidebar {
         position: fixed;
+        top: 8%;
         left: 5%; /* Center horizontally */
         width: 90%; /* Sidebar width */
         height: calc(100vh - 160px); /* Adjust height */
