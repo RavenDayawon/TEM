@@ -20,78 +20,41 @@ document.addEventListener("DOMContentLoaded", function() {
         attribution: '&copy; <a href="https://www.maptiler.com/copyright/">MapTiler</a>',
     }).addTo(map);
 
-    // Sidebar toggle logic
-    const toggleButton = document.getElementById("toggleSidebar");
-    const sidebar = document.getElementById("sidebar");
+    // Utility function to handle toggle logic
+    function setupToggle(buttonId, targetId, scaledClass) {
+        const button = document.getElementById(buttonId);
+        const target = document.getElementById(targetId);
 
-    // Initially hide the sidebar
-    sidebar.classList.remove("visible");
-
-    toggleButton.addEventListener("click", function() {
-        if (window.innerWidth <= 600) {
-            sidebar.classList.toggle("visible");
-            logoMenu.classList.toggle("scaled");
-            // Always toggle 'scaled' on logo click
+        if (!button || !target) {
+            console.error(`Elements with IDs ${buttonId} or ${targetId} not found.`);
+            return;
         }
-    });
 
-    const logoMenu = document.getElementById("toggleSidebar");
+        // Initially hide the target element
+        target.classList.remove("visible");
 
-    if (!logoMenu) {
-        console.error("Logo element not found!"); // Log an error if the logo is not found
+        // Toggle visibility and scaling on button click
+        button.addEventListener("click", function () {
+            target.classList.toggle("visible");
+            button.classList.toggle(scaledClass);
+        });
+
+        // Close the target when clicking outside of it
+        document.addEventListener("click", function (event) {
+            const isClickInside = target.contains(event.target);
+            const isClickOnButton = button.contains(event.target);
+
+            if (!isClickInside && !isClickOnButton && target.classList.contains("visible")) {
+                target.classList.remove("visible");
+                button.classList.remove(scaledClass);
+            }
+        });
     }
 
-    // Function to close the sidebar
-    function closeSidebar() {
-        sidebar.classList.remove("visible");
-        if (logoMenu.classList.contains("scaled")) {
-            logoMenu.classList.remove("scaled");
-        }
-    }
-
-    // Close the sidebar when clicking anywhere outside of it
-    document.addEventListener("click", function (event) {
-        const isClickInsideSidebar = sidebar.contains(event.target);
-        const isClickOnMenu = toggleButton.contains(event.target);
-
-        // Close the sidebar and toggle the scaled class only if the sidebar is visible
-        if (!isClickInsideSidebar && !isClickOnMenu && sidebar.classList.contains("visible")) {
-            closeSidebar();
-        }
-    });
-
-
-    // Help Tab toggle logic
-    const helpButton = document.getElementById("toggleHelp");
-    const helpTab = document.getElementById("helpTab");
-    const logoHelp = document.getElementById("toggleHelp");
-
-    helpTab.classList.remove("visible");
-
-    helpButton.addEventListener("click", function() {
-        if (window.innerWidth <= 600) {
-            helpTab.classList.toggle("visible");
-            logoHelp.classList.toggle("scaled"); // Apply scale effect only to the help tab
-        }
-    });
-
-    // Function to close the help tab
-    function closeHelp() {
-        helpTab.classList.remove("visible");
-        if (logoHelp.classList.contains("scaled")) {
-            logoHelp.classList.remove("scaled");
-        }
-    }
-
-    // Close the help tab when clicking anywhere outside of it
-    document.addEventListener("click", function (event) {
-        const isClickInsideHelpTab = helpTab.contains(event.target);
-        const isClickOnHelp = helpButton.contains(event.target);
-
-        if (!isClickInsideHelpTab && !isClickOnHelp && helpTab.classList.contains("visible")) {
-            closeHelp();
-        }
-    });
+    // Setup toggle logic for sidebar and help tab
+    setupToggle("toggleSidebar", "sidebar", "scaled");
+    setupToggle("toggleHelp1", "helpTab1", "scaled");
+    setupToggle("toggleHelp2", "helpTab2", "scaled");
 
     // POI Categories // Add new locations here
     const categories = {
@@ -735,51 +698,4 @@ document.addEventListener("DOMContentLoaded", function() {
             }
         });
     });
-
-    
-
-    // GPS
-    function updateLocation(position) {
-        var lat = position.coords.latitude;
-        var lng = position.coords.longitude;
-
-        // Add or update a marker at the user's location
-        if (userMarker) {
-            userMarker.setLatLng([lat, lng]);
-        } else {
-            userMarker = L.marker([lat, lng]).addTo(map).bindPopup("You are here");
-        }
-
-        // Center the map only on the first GPS update
-        if (shouldCenter) {
-            map.setView([lat, lng], 13);
-            // Adjust zoom level as needed
-            shouldCenter = false;
-            // Prevent further centering
-        }
-    }
-
-    // Handle geolocation errors
-    function handleLocationError(error) {
-        console.log("Error with geolocation: ", error);
-        alert("Unable to retrieve location. Please enable GPS and refresh the page.");
-    }
-
-    // Add a marker to show the user's location (initialize as null)
-    var userMarker = null;
-
-    // Flag to center map only once
-    var shouldCenter = true;
-
-    // Request the user’s location continuously
-    if (navigator.geolocation) {
-        navigator.geolocation.watchPosition(updateLocation, handleLocationError, {
-            enableHighAccuracy: true,
-            maximumAge: 5000,
-            // Cache the position for 5 seconds
-            timeout: 5000 // Timeout if position not available after 5 seconds
-        });
-    } else {
-        alert("Geolocation is not supported by this browser.");
-    }
 });
